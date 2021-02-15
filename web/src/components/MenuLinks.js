@@ -20,7 +20,7 @@ const MenuLinks = ({ classes, blog }) => {
     }
   `)
   data.links.nodes.sort((a, b) => (a.order > b.order ? 1 : -1))
-  console.log(blog)
+
   return (
     <div className={classes}>
       <div className="flex-grow" />
@@ -31,7 +31,7 @@ const MenuLinks = ({ classes, blog }) => {
               <Link
                 activeClassName={blog ? "active-link-blog" : "active-link"}
                 key={item.slug.current}
-                className="link-primary py-4 lg:pl-10"
+                className="link-primary py-6 lg:pl-10"
                 to={item.slug.current}
               >
                 <span>{item.name}</span>
@@ -40,10 +40,10 @@ const MenuLinks = ({ classes, blog }) => {
             {item.newwindow && (
               <a
                 key={item.name}
-                className="link-primary py-4 lg:pl-10"
+                className="link-primary py-6 lg:pl-10"
                 href={item.slug.current}
                 rel="noopener noreferrer"
-                target="_blank"
+                target="_self"
               >
                 <span>{item.name}</span>
               </a>

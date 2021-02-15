@@ -23,88 +23,88 @@ const path = require("path")
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
-  const careers_data = await graphql(`
-    query GetCareers {
-      careers: allSanityCareers {
-        nodes {
-          slug {
-            current
-          }
-        }
-      }
-    }
-  `)
-  careers_data.data.careers.nodes.forEach(career => {
-    createPage({
-      path: `/careers`,
-      component: path.resolve(`src/templates/careers_template.js`),
-      context: {
-        slug: career.slug.current,
-      },
-    })
-  })
+  // const careers_data = await graphql(`
+  //   query GetCareers {
+  //     careers: allSanityCareers {
+  //       nodes {
+  //         slug {
+  //           current
+  //         }
+  //       }
+  //     }
+  //   }
+  // `)
+  // careers_data.data.careers.nodes.forEach(career => {
+  //   createPage({
+  //     path: `/careers`,
+  //     component: path.resolve(`src/templates/careers_template.js`),
+  //     context: {
+  //       slug: career.slug.current,
+  //     },
+  //   })
+  // })
 
-  const customers_data = await graphql(`
-    query getCustomers {
-      customers: allSanityCustomers {
-        nodes {
-          slug {
-            current
-          }
-        }
-      }
-    }
-  `)
-  customers_data.data.customers.nodes.forEach(customer => {
-    createPage({
-      path: `/customers`,
-      component: path.resolve(`src/templates/customers_template.js`),
-      context: {
-        slug: customer.slug.current,
-      },
-    })
-  })
+  // const customers_data = await graphql(`
+  //   query getCustomers {
+  //     customers: allSanityCustomers {
+  //       nodes {
+  //         slug {
+  //           current
+  //         }
+  //       }
+  //     }
+  //   }
+  // `)
+  // customers_data.data.customers.nodes.forEach(customer => {
+  //   createPage({
+  //     path: `/customers`,
+  //     component: path.resolve(`src/templates/customers_template.js`),
+  //     context: {
+  //       slug: customer.slug.current,
+  //     },
+  //   })
+  // })
 
-  const team_data = await graphql(`
-    query getTeamData {
-      teamPage: allSanityTeamPageContent {
-        nodes {
-          slug {
-            current
-          }
-        }
-      }
-    }
-  `)
-  team_data.data.teamPage.nodes.forEach(teamPage => {
-    createPage({
-      path: `/team`,
-      component: path.resolve(`src/templates/team_template.js`),
-      context: {
-        slug: teamPage.slug.current,
-      },
-    })
-  })
-  const theWay_data = await graphql(`
-    query getWayData {
-      way: allSanityTheWay {
-        nodes {
-          slug {
-            current
-          }
-        }
-      }
-    }
-  `)
-  theWay_data.data.way.nodes.forEach(way => {
-    createPage({
-      path: `/way`,
-      component: path.resolve(`src/templates/the_way_template.js`),
-      context: {
-        slug: way.slug.current,
-      },
-    })
-  })
+  // const team_data = await graphql(`
+  //   query getTeamData {
+  //     teamPage: allSanityTeamPageContent {
+  //       nodes {
+  //         slug {
+  //           current
+  //         }
+  //       }
+  //     }
+  //   }
+  // `)
+  // team_data.data.teamPage.nodes.forEach(teamPage => {
+  //   createPage({
+  //     path: `/team`,
+  //     component: path.resolve(`src/templates/team_template.js`),
+  //     context: {
+  //       slug: teamPage.slug.current,
+  //     },
+  //   })
+  // })
+  // const theWay_data = await graphql(`
+  //   query getWayData {
+  //     way: allSanityTheWay {
+  //       nodes {
+  //         slug {
+  //           current
+  //         }
+  //       }
+  //     }
+  //   }
+  // `)
+  // theWay_data.data.way.nodes.forEach(way => {
+  //   createPage({
+  //     path: `/way`,
+  //     component: path.resolve(`src/templates/the_way_template.js`),
+  //     context: {
+  //       slug: way.slug.current,
+  //     },
+  //   })
+  // })
   // const result = await graphql(`
   //   query GetProjects {
   //     projects: allSanityProjects {
@@ -162,7 +162,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   blog_data.data.blogs.nodes.forEach(blog => {
     createPage({
-      path: `/blog/${blog.slug.current}`,
+      path: `/${blog.slug.current}`,
       component: path.resolve(`src/templates/blog_template.js`),
       context: {
         slug: blog.slug.current,

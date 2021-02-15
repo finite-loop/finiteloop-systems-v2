@@ -45,9 +45,7 @@ const BlogLayout = ({ bgImg, children }) => {
     >
       <Helmet title={settings.siteTitle} />
       <BlogHeader id="header" logo={settings.logo} />
-      <div className="sm:max-w-full md:max-w-3/4 my-8 mx-auto mb-auto">
-        {children}
-      </div>
+      <div className="max-w-full my-1 mx-auto">{children}</div>
       <Footer
         socialUrls={{
           linked: settings.linkedin,

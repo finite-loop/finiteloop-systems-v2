@@ -1,9 +1,9 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import MenuLinks from "./MenuLinks"
 import SEO from "./seo"
-import flLogoText from "../images/finiteloop_logo_text.png"
+
 const BlogHeader = ({ siteTitle, logo }) => {
   const isBrowser = typeof window !== `undefined`
   let win = { pageYOffset: 0 }
@@ -12,40 +12,37 @@ const BlogHeader = ({ siteTitle, logo }) => {
   }
 
   const [menuActive, setMenuActive] = useState(false)
-  const [currState, setCurrState] = useState(win.pageYOffset)
-  const [navClass, setNavClass] = useState("")
 
-  useEffect(() => {
-    console.log("1")
-    const handleScroll = () => {
-      if (win.pageYOffset > currState) {
-        setNavClass("")
-        setCurrState(win.pageYOffset)
-      } else if (win.pageYOffset < currState) {
-        if (win.pageYOffset !== 0) {
-          setNavClass("fixed")
-        } else {
-          setNavClass("")
-        }
-      }
-      setCurrState(win.pageYOffset)
-    }
-    win.addEventListener("scroll", handleScroll)
-  })
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     if (win.pageYOffset > currState) {
+  //       setNavClass("")
+  //       setCurrState(win.pageYOffset)
+  //     } else if (win.pageYOffset < currState) {
+  //       if (win.pageYOffset !== 0) {
+  //         setNavClass("fixed")
+  //       } else {
+  //         setNavClass("")
+  //       }
+  //     }
+  //     setCurrState(win.pageYOffset)
+  //   }
+  //   win.addEventListener("scroll", handleScroll)
+  // })
 
   return (
     <div id="header h-full">
       <nav
-        className={`nav ${navClass} sm:flex-row`}
+        className={`nav sm:flex-row`}
         id="navbar"
         role="navigation"
         style={{ backgroundColor: "#36374D" }}
       >
-        <div className="sm:mt-2 sm:w-2/4 lg:w-auto sm:ml-4 lg:ml-32">
-          <Link to="/">
-            <div className="sm:flex md:flex  mb-2">
+        <div className="sm:mt-2 sm:ml-4 lg:ml-32">
+          <Link to="https://finiteloop.io/">
+            <div className="sm:flex md:flex justify-center mb-2">
               <img
-                className="sm:w-3/4 lg:w-auto sm:h-12 md:h-12 lg:h-10"
+                className="sm:w-48 lg:w-48 h-full mt-2"
                 src={logo.asset.url}
                 alt="Logo"
               />

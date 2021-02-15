@@ -2,7 +2,6 @@ import React from "react"
 import noimage from "../images/sky.jpg"
 
 const ProjectsList = ({ type }) => {
-  console.log(type)
   var list = {
     Technology: [
       {
@@ -111,7 +110,7 @@ const ProjectsList = ({ type }) => {
       },
     ],
   }
-  console.log(list[type])
+
   return (
     <div className="max-w-screen-2lg mx-auto text-white">
       <div

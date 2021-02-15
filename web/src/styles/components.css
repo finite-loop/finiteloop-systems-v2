@@ -19,7 +19,7 @@
 }
 
 .nav {
-  @apply z-50 flex justify-between flex-wrap w-full p-2;
+  @apply z-50 flex justify-between flex-wrap w-full p-4;
 }
 .nav:after {
   @apply block border-b;

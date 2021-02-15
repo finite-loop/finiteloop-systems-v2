@@ -1,9 +1,9 @@
 h1 {
-  @apply text-5xl font-semibold tracking-normal antialiased pb-2;
+  @apply text-5xl font-semibold tracking-normal antialiased;
 }
 
 h2 {
-  @apply text-xl font-semibold tracking-normal antialiased py-2;
+  @apply text-xl font-semibold tracking-normal antialiased m-0 p-0;
 }
 
 .heroText {

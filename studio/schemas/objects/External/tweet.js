@@ -6,9 +6,9 @@ import { Tweet } from "react-twitter-widgets";
 const Preview = ({ value }) => {
   const { url } = value;
   const list = url.split("/");
-  console.log(list);
+
   const id = list.pop();
-  console.log(id);
+
   return <Tweet tweetId={id} />;
 };
 

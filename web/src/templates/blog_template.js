@@ -4,7 +4,10 @@ import Img from "gatsby-image"
 import imageUrlBuilder from "@sanity/image-url"
 import BlockContent from "../components/SanityTextEditorComponents/block-content"
 import clientConfig from "../../client-config"
+import { Helmet } from "react-helmet"
 import BlogLayout from "../components/blogLayout"
+import SEO from "../components/seo"
+
 const builder = imageUrlBuilder(clientConfig.sanity)
 
 function imageUrlFor(source) {
@@ -24,8 +27,10 @@ function buildImageObj(source) {
 const SampleBlog = ({ data }) => {
   return (
     <BlogLayout>
+      <Helmet title={`Blog | ${data.blog.title}`} />
+
       <article className="m-0 md:m-2 bg-white">
-        <div className="m-10 w-2/3 mx-auto">
+        <div className="m-10 sm:w-11/12 lg:w-5/6 mx-auto">
           <h1 className="text-2xl font-semibold md:pt-10 mb-4 md:text-3xl lg:text-5xl leading-tight font-neptune">
             {data.blog.title}
           </h1>
@@ -43,19 +48,18 @@ const SampleBlog = ({ data }) => {
                 {data.blog.author.name}
               </span>
               <p className="text-gray-600 my-0 py-0 text-sm">
-                {data.blog.publishedAt}{" "}
+                {data.blog.createdTime}{" "}
                 <span className="">
                   {" - "}
                   <li className="inline-block">
-                    {" "}
                     {data.blog.read_time} min read
-                  </li>{" "}
-                </span>{" "}
+                  </li>
+                </span>
               </p>
             </span>
           </div>
         </div>
-        <div className="w-5/6 md:container  md:w-2/3 mx-auto ">
+        {/* <div className="mx-auto ">
           {data.blog.mainImage && data.blog.mainImage.asset && (
             <img
               src={imageUrlFor(buildImageObj(data.blog.mainImage))
@@ -67,21 +71,30 @@ const SampleBlog = ({ data }) => {
               className="h-auto object-cover rounded sm:object-cover md:object-contain lg:object-contain xl:object-contain text-center w-full"
             />
           )}
-        </div>
-        <div className=" w-5/6 mx-auto">
-          <div className="mt-8 sm:mr-6 md:mb-4 lg:ml-2 xl:m-20 bg-yellow-200-md">
-            {data.blog._rawBody && (
-              <BlockContent blocks={data.blog._rawBody || []} />
-            )}
-          </div>
+        </div> */}
+        <div className="sm:w-11/12 lg:w-5/6 mx-auto">
+          {data.blog._rawBody && (
+            <BlockContent blocks={data.blog._rawBody || []} />
+          )}
         </div>
       </article>
+      <SEO
+        title={`Blogs | ${data.blog.title} `}
+        description={data.sanitySiteSettings.siteDesc}
+      />
     </BlogLayout>
   )
 }
 
 export const query = graphql`
   query getBlog($slug: String) {
+    sanitySiteSettings {
+      introText
+      introText2
+      siteDesc
+      siteLongTitle
+      siteTitle
+    }
     blog: sanityBlog(slug: { current: { eq: $slug } }) {
       _rawBody
       title
@@ -108,12 +121,13 @@ export const query = graphql`
         alt
       }
       publishedAt(formatString: "MMMM DD, YYYY")
+      createdTime: _createdAt(formatString: "MMMM DD, YYYY")
       read_time
       author {
         name
         image {
           asset {
-            fixed(width: 125, height: 125) {
+            fixed(width: 150, height: 150) {
               ...GatsbySanityImageFixed
             }
             fluid {
